@@ -44,3 +44,6 @@ Develop a solution to:
 git clone https://github.com/yourusername/neet-rank-predictor.git
 cd neet-rank-predictor
 npm install
+
+Access the swagger endpoint at localhost:3000/api
+
