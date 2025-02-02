@@ -7,6 +7,7 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+
   @OneToMany(() => QuizSubmission, (submission) => submission.user)
   submissions: QuizSubmission[];
 }

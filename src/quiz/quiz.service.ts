@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { QuizSubmission } from './entities/quiz-submission.entity';
-
+import { CreateSubmissionDto } from './dto/create-submission.dto';
 @Injectable()
 export class QuizService {
   constructor(
@@ -29,6 +29,15 @@ export class QuizService {
       order: { submittedAt: 'DESC' },
       take: 5,
       relations: ['quiz', 'quiz.questions', 'quiz.questions.options'],
+    });
+  }
+
+  async createSubmission(dto: CreateSubmissionDto) {
+    return this.submissionRepo.save({
+      user: { id: dto.userId },
+      quiz: { id: dto.quizId },
+      responseMap: dto.responseMap,
+      submittedAt: new Date()
     });
   }
 }
